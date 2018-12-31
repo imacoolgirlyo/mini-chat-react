@@ -1,0 +1,21 @@
+{
+  "name": "mini-chat-react",
+  "version": "1.0.0",
+  "description": "Mini chat using React, Nodejs, MongoDB, Webpack",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/app.js",
+    "dev": "webpack-dev-server --hot --inline --config ./webpack/webpack.config.dev.js"
+  },
+  "author": "Me",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "css-loader": "^2.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.14"
+  }
+}
