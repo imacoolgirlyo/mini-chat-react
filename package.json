@@ -4,15 +4,19 @@
   "description": "Mini chat using React, Nodejs, MongoDB, Webpack",
   "main": "index.js",
   "scripts": {
-    "start": "node ./server/app.js",
+    "start": "nodemon ./server/app.js",
     "dev": "webpack-dev-server --hot --inline --config ./webpack/webpack.config.dev.js"
   },
   "author": "Me",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  },
   "devDependencies": {
     "css-loader": "^2.1.0",
     "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.18.9",
     "style-loader": "^0.23.1",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2",
