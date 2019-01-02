@@ -13,13 +13,22 @@ server.listen(port, () => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-io.on('connection', (socket) => {
-    console.log('socket io is connected');
-    socket.on('disconnect', ()=> {
-        console.log('user disconnected');
-    })
 
-    socket.on('chat message', (msg) => {
-        console.log('message : ' + msg);
-    })
-})
+const messageHandler = (socket) => {
+   
+        console.log('socket io is connected');
+
+        socket.on('disconnect', ()=> {
+            console.log('user disconnected');
+        })
+    
+        socket.on('chat message', (ob) => {
+            const nickname = ob.nick;
+            const message = ob.msg;
+    
+            socket.broadcast.emit('message from others', {nickname, message});
+        })
+} 
+
+
+io.on('connection', messageHandler);
