@@ -1,4 +1,6 @@
-const socket = io();
+const socket = io({
+    autoConnect: false
+});
 const chat = document.querySelector('.chat-log');
 const chatInputForm = document.querySelector('.chat-input-form');
 const message = document.querySelector('.js-input');
@@ -6,17 +8,20 @@ const logout = document.querySelector('.log');
 const nicknameInputForm = document.querySelector('.nickname-input-form');
 const nicknameInput = document.querySelector('.nickname-input');
 
-// 닉네임 설정 
-console.log(socket.id);
+let status = true;
 
-socket.on('connect', ()=> {
-    console.log(socket.id);
-})
+// 닉네임 입력하고, 소켓 처음 연결 , connect 
+const loginHandler = (e) => {
 
-const nicknameHandler = (e) => {
+    socket.open();
+
     e.preventDefault();
+
+    let status = true;
     const nickname = nicknameInput.value;
     localStorage.setItem("nickname", nickname);
+
+    socket.emit('nickname' , nickname, status);
 
     nicknameInput.value = "";
 
@@ -24,13 +29,16 @@ const nicknameHandler = (e) => {
     nicknameInputForm.style.display = "none";
     
 }
-
-
-nicknameInputForm.addEventListener('submit', nicknameHandler);
+nicknameInputForm.addEventListener('submit', loginHandler);
 
 
 const logoutHandle = (e) => {
+
     e.preventDefault();
+
+    let status = false;
+    let nickname = localStorage.getItem('nickname');
+    socket.emit('nickname' , nickname, status);
 
     socket.disconnect();
    
@@ -40,10 +48,12 @@ const logoutHandle = (e) => {
 
 
 }
-
 logout.addEventListener('click', logoutHandle)
 
 const makeChat = (msg, nick) => {
+    
+    chat.style.display = "block";
+
     const chat_li = document.createElement('li');
     const nick_span = document.createElement('span');
     
@@ -59,7 +69,7 @@ const makeChat = (msg, nick) => {
 }
 
 const emitMessage = (msg, nick) => {
-
+    
     socket.emit('chat message', {msg, nick});
         makeChat(msg, nick);
 
@@ -71,20 +81,10 @@ chatInputForm.addEventListener('submit', event => {
     let message_context = message.value;
     let message_nickname = localStorage.getItem('nickname');
 
-    if(socket.connected){
-
         emitMessage(message_context, message_nickname);
         message.value = "";
-}
-    else{
-        socket.connect();
-        emitMessage(message_context, message_nickname);
-        message.value = "";
-
-    }
 })
 
-// 다른 사람 메세지 받기 
 
 const newMessage = (ob) => {
     let nick = ob.nickname;
@@ -94,5 +94,26 @@ const newMessage = (ob) => {
 }
 
 socket.on('message from others' , newMessage);
+
+const logInOutNotiHandler = (nick, status) => {
+
+    console.log(status);
+    if(status){
+
+        const li = document.createElement('li');
+        li.innerHTML = `${nick} 가 입장하였습니다.`;
+
+        chat.appendChild(li);
+
+    }else{
+        const li = document.createElement('li');
+        li.innerHTML = `${nick} 가 퇴장하였습니다.`;
+
+        chat.appendChild(li);
+    }
+    
+}
+
+socket.on('login notification' , logInOutNotiHandler);
 
 
