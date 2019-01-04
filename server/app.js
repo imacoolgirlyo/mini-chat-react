@@ -11,28 +11,18 @@ const port = '8080';
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+let clientNum ;
 
 const socketHandler = (socket) => {
-
-    console.log(`${socket.id} is connected`);
-    console.log("connected : " + io.engine.clientsCount);
+    // console.log("connected : " + io.engine.clientsCount);
 
         socket.on('nickname', (nick, status) => {
-            console.log(status);
-            socket.broadcast.emit('login notification', nick, status);
+                socket.broadcast.emit('login notification', nick, status);
         })
-        // socket.on('disconnect', );
-        socket.on('chat message', (ob) => {
-
-            
-            const nickname = ob.nick;
-            const message = ob.msg;
-    
-            socket.broadcast.emit('message from others', {nickname, message});
+        socket.on('chat message', (nick, msg) => 
+        {
+            socket.broadcast.emit('message from others', nick, msg);
         })
 } 
 
 io.on('connection', socketHandler);
-
-// 새로운 사람 들어오고, 나가고 표시, 알림

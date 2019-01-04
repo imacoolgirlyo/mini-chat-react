@@ -10,11 +10,9 @@ const nicknameInput = document.querySelector('.nickname-input');
 
 let status = true;
 
-// 닉네임 입력하고, 소켓 처음 연결 , connect 
 const loginHandler = (e) => {
 
     socket.open();
-
     e.preventDefault();
 
     let status = true;
@@ -24,13 +22,10 @@ const loginHandler = (e) => {
     socket.emit('nickname' , nickname, status);
 
     nicknameInput.value = "";
-
     chatInputForm.style.display = "block";
     nicknameInputForm.style.display = "none";
     
 }
-nicknameInputForm.addEventListener('submit', loginHandler);
-
 
 const logoutHandle = (e) => {
 
@@ -48,15 +43,14 @@ const logoutHandle = (e) => {
 
 
 }
-logout.addEventListener('click', logoutHandle)
 
-const makeChat = (msg, nick) => {
-    
+const makeChat = (nick, msg) => {
+    // 나한테 온거, 남한테 온거 구분
+    console.log(nick + msg);
+
     chat.style.display = "block";
-
     const chat_li = document.createElement('li');
     const nick_span = document.createElement('span');
-    
     const msgTxt = document.createTextNode(msg);
 
     nick_span.innerHTML = nick;
@@ -68,37 +62,12 @@ const makeChat = (msg, nick) => {
 
 }
 
-const emitMessage = (msg, nick) => {
-    
-    socket.emit('chat message', {msg, nick});
-        makeChat(msg, nick);
 
-}
-
-chatInputForm.addEventListener('submit', event => {
-    event.preventDefault();
-    
-    let message_context = message.value;
-    let message_nickname = localStorage.getItem('nickname');
-
-        emitMessage(message_context, message_nickname);
-        message.value = "";
-})
-
-
-const newMessage = (ob) => {
-    let nick = ob.nickname;
-    let msg = ob.message;
-
-    makeChat(msg, nick);
-}
-
-socket.on('message from others' , newMessage);
-
-const logInOutNotiHandler = (nick, status) => {
+const logInOutNotiHandler = (nick, status, clientNum) => {
 
     console.log(status);
     if(status){
+        console.log("접속자 수 " + clientNum);
 
         const li = document.createElement('li');
         li.innerHTML = `${nick} 가 입장하였습니다.`;
@@ -114,6 +83,22 @@ const logInOutNotiHandler = (nick, status) => {
     
 }
 
+nicknameInputForm.addEventListener('submit', loginHandler);
+logout.addEventListener('click', logoutHandle)
+chatInputForm.addEventListener('submit', event => {
+    event.preventDefault();
+    
+    let message_context = message.value;
+    let message_nickname = localStorage.getItem('nickname');
+
+    socket.emit('chat message', message_nickname, message_context);
+    makeChat(message_nickname, message_context);
+
+    message.value = "";
+})
+
+
+socket.on('message from others' , makeChat);
 socket.on('login notification' , logInOutNotiHandler);
 
 
