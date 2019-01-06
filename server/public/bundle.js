@@ -1,3 +1,7 @@
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+module.exports = console.log("this is GetGif");
+},{}],2:[function(require,module,exports){
+const foo =require('./GetGif.js');
 const socket = io({
     autoConnect: false
 });
@@ -9,57 +13,14 @@ const nicknameInputForm = document.querySelector('.nickname-input-form');
 const nicknameInput = document.querySelector('.nickname-input');
 
 const gifContatiner = document.querySelector('.gifs');
-const gifInputForm = document.querySelector('.gif-input-form');
-const gifInput = document.querySelector('.gif-input');
-const gifBtn = document.querySelector('.gifBtn'); 
-const gifSearchBtn = document.querySelector('.gif_search');
+
+
+
 
 fetch("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=co5seap5Cu8XVR3owweQWvbkXNqEeHSO&limit=5")
 .then(res => res.json())
 .then(data => gifContatiner.src = data.data[2].images.original.url);
 
-
-const gifBtnHandler = e => {
-    e.preventDefault();
-    chatInputForm.style.display = "none";
-    gifInputForm.style.display = "block";
-}
-
-const gifSearchBtnHandler = e => {
-    e.preventDefault();
-
-    let nickname = localStorage.getItem('nickname');
-    let gif_input_v = gifInput.value;
-
-    fetch(`http://api.giphy.com/v1/gifs/search?q=${gif_input_v}&api_key=co5seap5Cu8XVR3owweQWvbkXNqEeHSO&limit=5`)
-    .then(res => res.json())
-    .then(data => {
-        gifContatiner.src = data.data[2].images.original.url;
-        socket.emit('gif', nickname, data.data[2].images.original.url)
-    });
-
-}
-// 채팅 모드, GIF 모드
-gifBtn.addEventListener('click', gifBtnHandler);
-gifSearchBtn.addEventListener('click', gifSearchBtnHandler);
-
-const gifUrlHander = (nick, url) => {
-
-    const chat_li = document.createElement('li');
-    const nick_span = document.createElement('span');
-    const img_gif = document.createElement('img');
-
-    nick_span.innerHTML = nick;
-    img_gif.src = url;
-
-    chat_li.appendChild(nick_span);
-    chat_li.appendChild(img_gif);
-    
-    chat.appendChild(chat_li);
-
-}
-
-socket.on('gif from others', gifUrlHander);
 
 let status = true;
 
@@ -77,7 +38,6 @@ const loginHandler = (e) => {
     nicknameInput.value = "";
     chatInputForm.style.display = "block";
     nicknameInputForm.style.display = "none";
-    gifBtn.style.display = "block";
     
 }
 
@@ -156,3 +116,5 @@ socket.on('message from others' , makeChat);
 socket.on('login notification' , logInOutNotiHandler);
 
 
+
+},{"./GetGif.js":1}]},{},[2]);
