@@ -25,9 +25,8 @@ const port = '8080';
 //   })
 
 // })
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../src')));
 
-let clientNum ;
 
 const socketHandler = (socket) => {
     // console.log("connected : " + io.engine.clientsCount);

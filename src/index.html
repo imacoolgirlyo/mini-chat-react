@@ -4,11 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Mini Chat by MySelf</title>
 </head>
 <body>
-   Hello, I'm new in webpack.
-   why not changed
-   good!
+    <h2>Mini Chat 8080</h2>
+   <form class="nickname-input-form">
+       Nickname : 
+       <input class="nickname-input">
+       <input type="submit" value="submit">
+   </form>
+
+   <img src="" class="gifs"></img>
+
+    <ul class="chat-log"></ul>
+
+    <button class= "gifBtn" type="submit">GIF</button>
+    <form class="gif-input-form">
+            <input name="gif" class="gif-input" placeholder="GIF">
+            <input class="gif_search" type="submit" value="search">
+    </form>
+
+    <form class="chat-input-form">
+        
+        <input name="chat" class="js-input" placeholder="Chat">
+        <input type="submit" value="submit">
+        <button class= "log" type="submit">log out</button>
+    </form>
+
+    
 </body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./index.js"></script>
 </html>
