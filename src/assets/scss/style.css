@@ -1,0 +1,96 @@
+body{
+    box-sizing: border-box
+}
+.rotate_text{
+    font-family: 'Work Sans';
+    font-size : 48px;
+    line-height: 1.5;
+}
+
+.about{
+    position: fixed;
+    top:50%;
+    left: 40px;
+    transform-origin: 0 0;
+    transform: rotate(-90deg) translate(-50%,0);
+   
+}
+
+.buy{
+    position: fixed;
+    top:50%;
+    right: 40px;
+    transform-origin: 100% 0;
+    transform: rotate(90deg) translate(50%,0);
+    
+}
+
+.readmore{
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+a {
+    color: #2727e6;
+    text-decoration: none;
+    border-bottom: 4px solid transparent;
+    transition : border-bottom 0.5s;
+}
+
+a:hover{
+    border-bottom-color: #2727e6;
+}
+
+.h1_effect{
+    margin: 0;
+    font-family:'Verdana';
+    font-size: 40px;
+    top: 40px;
+    position: fixed;
+    left:50%;
+    transform: translate(-50%,0);
+}
+
+.main{
+    
+    background-color: brown;
+    position: fixed;
+    border: 4px solid;
+    top: 50%;
+    left:50%;
+    width: 500px;
+    transform: translate(-50%,-50%);
+
+}
+
+.chat-input-form, .gif-input-form, .gifBtn{
+    display: none;
+}
+.js-input{
+    margin: 5px;
+    
+    width: 300px;
+    padding: 10px;
+    border-radius: 3px;
+}
+ul {
+    margin : 0;
+    width: 300px;
+    list-style: none;
+}
+
+
+
+.chat_container_me{
+    background-color: beige;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.chat_nick {
+    margin-right: 20px;
+    font-size: 5px;
+}

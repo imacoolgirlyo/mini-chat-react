@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+   
+    <title>Mini Chat by MySelf</title>
+</head>
+<body>
+    
+    <h1 class= 'h1_effect'>Mini Chat 8080</h1> 
+    <a href="" class="rotate_text about"> About the author </a>
+    <a href="" class="rotate_text buy"> Buy the book </a>
+    <a href="" class="rotate_text readmore"> Read more </a>
+
+    <div class="main">
+
+        <form class="nickname-input-form">
+            Nickname : 
+            <input class="nickname-input">
+            <input type="submit" value="submit">
+        </form>
+
+        <ul class="chat-log"></ul>
+
+        <button class= "gifBtn" type="submit">GIF</button>
+        <form class="gif-input-form">
+                <input name="gif" class="gif-input" placeholder="GIF">
+                <input class="gif_search" type="submit" value="search">
+        </form>
+
+        <form class="chat-input-form">
+            
+            <input name="chat" class="js-input" placeholder="Chat">
+            <input type="submit" value="submit">
+            <button class= "log" type="submit">log out</button>
+        </form>
+
+    </div>
+   
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./index.js"></script>
+
+
+</html>

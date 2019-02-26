@@ -9,22 +9,7 @@ const io = require('socket.io')(server);
 
 const port = '8080';
 
-// const GphApiClient = require('giphy-js-sdk-core');
-// client = GphApiClient('co5seap5Cu8XVR3owweQWvbkXNqEeHSO');
 
-// app.get('/gif', (req, res) => {
-// client.search('gifs', {"q": "cats"})
-//   .then((response) => {
-//     response.data.forEach((gifObject) => {
-//         console.log(gifObject);
-//     //   res.send(gifObject);
-//     })
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   })
-
-// })
 app.use(express.static(path.join(__dirname, '../src')));
 
 
