@@ -6,10 +6,14 @@ import bodyParser from 'body-parser';
 import globalRouter from './routers/globalRouter';
 import userRouter from './routers/userRouter';
 import routes from './routes';
+import path from "path";
 
 const app = express();
 
+
 app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
+
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : true}));

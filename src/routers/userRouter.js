@@ -4,10 +4,10 @@ import {editProfile, changePassword, userDetail} from '../controllers/userContro
 
 const userRouter = express.Router();
 
-userRouter.get(routes.userDetail, userDetail);
 userRouter.get(routes.editProfile, editProfile);
-userRouter.get(routes.changePasswrod, changePassword);
-
+userRouter.get(routes.changePassword, changePassword);
+// 왜 user detail 이 제일 마지막에 있어야 하는 거지 ? 
+userRouter.get(routes.userDetail, userDetail);
 
 
 export default userRouter;

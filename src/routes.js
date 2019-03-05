@@ -22,7 +22,7 @@ const routes = {
     users : USERS,
     userDetail : USER_DETAIL,
     editProfile : EDIT_PROFILE,
-    changePasswrod : CHANGE_PASSWORD
+    changePassword : CHANGE_PASSWORD
 };
 
 export default routes;
