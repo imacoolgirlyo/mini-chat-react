@@ -1,8 +1,9 @@
 header.header
     .header__column
-        h1 Mini Chat 8080
+        a(href=routes.home)
+            h1 Mini Chat 8080
     .header__column
         ul
             li
-                a(href="#") Join 
-                a(href="#") Log in
+                a(href=routes.join) Join 
+                a(href=routes.login) Log in
