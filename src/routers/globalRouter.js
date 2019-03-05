@@ -16,3 +16,5 @@ globalRouter.get(routes.login, login);
 globalRouter.get(routes.logout, logout);
 
 export default globalRouter;
+
+// 첫 화면, 채팅 화면, 회원 가입, 로그인 , 로그 아웃으로 이동
