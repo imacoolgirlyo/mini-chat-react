@@ -7,6 +7,7 @@ import {
     logout
 } from '../controllers/userController';
 
+
 const globalRouter = express.Router();
 
 console.log(home);

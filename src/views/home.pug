@@ -1,4 +1,18 @@
 extends layouts/main 
 
 block content 
-    p Home
+    .chats
+        each chat in chats 
+            if chat.link 
+                div
+                    span= chat.author.nickname
+                    img(src=chat.link)
+            else
+                div
+                    span= chat.author.nickname 
+                    span= chat.message
+    .form-container
+        form(action=routes.home, method="post")
+        input(type="text", name="message" placeholder="Message")
+        input(type="submit", value="Submit")
+        

@@ -7,8 +7,8 @@ import { localsMiddleware } from './middlewares';
 import routes from './routes';
 import globalRouter from './routers/globalRouter';
 import userRouter from './routers/userRouter';
-
 import path from "path";
+
 
 const app = express();
 
