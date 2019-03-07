@@ -11,8 +11,9 @@ const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
 
+// Messages 
 
-
+const MESSAGES = "/messages";
 
 const routes = {
     home : HOME,
@@ -22,7 +23,8 @@ const routes = {
     users : USERS,
     userDetail : USER_DETAIL,
     editProfile : EDIT_PROFILE,
-    changePassword : CHANGE_PASSWORD
+    changePassword : CHANGE_PASSWORD,
+    messages : MESSAGES
 };
 
 export default routes;

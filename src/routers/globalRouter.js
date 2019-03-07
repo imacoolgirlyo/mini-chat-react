@@ -1,8 +1,9 @@
 import express from 'express';
 import routes from '../routes';
-import {home} from '../controllers/chatController';
+import {home , submitMessage} from '../controllers/chatController';
 import {
-    join,
+    getJoin,
+    postJoin,
     login,
     logout
 } from '../controllers/userController';
@@ -10,9 +11,13 @@ import {
 
 const globalRouter = express.Router();
 
-console.log(home);
+
 globalRouter.get(routes.home, home);
-globalRouter.get(routes.join, join);
+globalRouter.post(routes.messages, submitMessage);
+
+globalRouter.get(routes.join, getJoin);
+globalRouter.post(routes.join, postJoin);
+
 globalRouter.get(routes.login, login);
 globalRouter.get(routes.logout, logout);
 

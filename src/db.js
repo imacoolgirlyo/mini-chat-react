@@ -35,7 +35,7 @@ export const chats = [
     {
         id:12399,
         message : "Hello from the other side",
-        messageType: "GIF",
+        messageType: "gif",
         link :"https://media.giphy.com/media/2fLgzU6ZNbqgj1jJy2/giphy.gif",
         author: {
             id: 123944,
